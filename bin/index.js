@@ -28,18 +28,17 @@ const main = async () => {
 
   const result = await getData(endpoint);
 
-  console.log( '--------------------------------------------------' )
-  console.log( "Cases n England from " + result.data[MAX_RESULTS].date.green + " to " + result.data[0].date.green );
   var s0 = new Array( MAX_RESULTS );
   for( var i = 0; i < s0.length; i++ ){
-    s0[i] = result.data[i].newCases / 10000;
+    s0[i] = result.data[i].newCases;
   }
 
   var reversed = s0.reverse();
-  console.log( asciichart.plot( reversed ) );
-  console.log( 'Cases (x10,000)' )
-  console.log( '--------------------------------------------------' )
-
+  console.log( "" );
+  console.log( asciichart.plot( reversed, { height: 15 } ) );
+  console.log( "" );
+  console.log( "Cases in England from " + result.data[MAX_RESULTS].date.green + " to " + result.data[0].date.green );
+  console.log( "" );
   console.log( "Cases yesterday: " + result.data[0].newCases );
   console.log( "Data provided by UK Government" );
 };  // main
